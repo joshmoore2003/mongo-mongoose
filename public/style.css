@@ -1,0 +1,52 @@
+.btn-outline-success {
+    background-color: red ;
+    color: white ;
+}
+
+nav {
+    z-index: 1;
+}
+
+#title {
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+}
+
+#title h1 {
+    font-size: 3em;
+    padding-bottom: 10px;
+}
+
+#title h4 {
+   font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+header {
+  background-image: url(../assets/img/header-img.jpg);
+  background-repeat: no-repeat;
+  height: 100%;
+  position: relative;
+}
+
+#header-img {
+    min-height: 70vh;
+    overflow: hidden;
+}
+
+.card-width {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
