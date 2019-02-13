@@ -12,11 +12,6 @@ var request = require("request");
 // Require all models
 var db = require("./models");
 
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect(MONGODB_URI);
-
 // Initialize Express
 var PORT = process.env.PORT || 3000;
 
@@ -30,12 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
-// Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/mongoscraper", {
-useMongoClient: true
-});
+
 
 // Routes
 app.get("/", function(req, res) {
@@ -157,13 +147,20 @@ app.get("/saved", function(req, res) {
 app.put("/delete/:id", function(req, res) {
 
   db.Article
-    .findByIdAndUpdate({ _id: req.params.id }, { $set: { : false }})
+    .findByIdAndUpdate({ _id: req.params.id }, { $set: { isSaved: false }})
     .then(function(dbArticle) {
       res.json(dbArticle);
     })
     .catch(function(err) {
       res.json(err);
     });
+});
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
 });
 
 
