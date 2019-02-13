@@ -157,20 +157,13 @@ app.get("/saved", function(req, res) {
 app.put("/delete/:id", function(req, res) {
 
   db.Article
-    .findByIdAndUpdate({ _id: req.params.id }, { $set: { isSaved: false }})
+    .findByIdAndUpdate({ _id: req.params.id }, { $set: { : false }})
     .then(function(dbArticle) {
       res.json(dbArticle);
     })
     .catch(function(err) {
       res.json(err);
     });
-});
-
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-  useMongoClient: true
 });
 
 
